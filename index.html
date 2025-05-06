@@ -1,108 +1,137 @@
-from zipfile import ZipFile
-from pathlib import Path
-
-# Crear el contenido del archivo index.html
-html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Damian CV | Portafolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Damian CV</h1>
-      <nav class="space-x-4">
-        <a href="#sobre-mi" class="hover:text-blue-500">Sobre mí</a>
-        <a href="#proyectos" class="hover:text-blue-500">Proyectos</a>
-        <a href="#servicios" class="hover:text-blue-500">Servicios</a>
-        <a href="#blog" class="hover:text-blue-500">Blog</a>
-        <a href="#testimonios" class="hover:text-blue-500">Testimonios</a>
-        <a href="#galeria" class="hover:text-blue-500">Galería</a>
-        <a href="#contacto" class="hover:text-blue-500">Contacto</a>
-      </nav>
-    </div>
-  </header>
+<body class="bg-black text-white font-sans">
+  <!-- Navbar -->
+  <nav class="bg-gray-900 p-4 flex justify-between items-center shadow-lg">
+    <h1 class="text-2xl font-bold">Damian CV</h1>
+    <ul class="flex gap-4">
+      <li><a href="#presentacion" class="hover:text-blue-400">Presentación</a></li>
+      <li><a href="#servicios" class="hover:text-blue-400">Servicios</a></li>
+      <li><a href="#actualizaciones" class="hover:text-blue-400">Actualizaciones</a></li>
+      <li><a href="#comentarios" class="hover:text-blue-400">Comentarios</a></li>
+      <li><a href="#blog" class="hover:text-blue-400">Blog</a></li>
+      <li><a href="#exclusivo" class="hover:text-blue-400">Exclusivo</a></li>
+      <li><a href="#acerca" class="hover:text-blue-400">Acerca de mí</a></li>
+      <li><a href="#contacto" class="hover:text-blue-400">Contacto</a></li>
+    </ul>
+  </nav>
 
-  <section id="sobre-mi" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
-    <p>Soy Damian CV, creador de contenido y desarrollador. Este sitio es mi espacio para mostrar mis proyectos, compartir actualizaciones, y conectar con quienes buscan colaboraciones o servicios digitales.</p>
+  <!-- Presentación -->
+  <section id="presentacion" class="p-10 text-center">
+    <h2 class="text-4xl font-semibold mb-4">¡Bienvenido a mi mundo digital!</h2>
+    <p class="text-gray-400">Soy Damian CV, creador de contenido, desarrollador y apasionado de la tecnología.</p>
   </section>
 
-  <section id="proyectos" class="py-12 bg-white px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Proyectos Destacados</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="p-4 bg-gray-50 rounded shadow">
-        <h3 class="text-xl font-semibold">Nombre del Proyecto</h3>
-        <p>Descripción breve del proyecto y tecnologías usadas.</p>
+  <!-- Servicios -->
+  <section id="servicios" class="p-10 bg-gray-800">
+    <h2 class="text-3xl font-bold mb-6">Portafolio de Servicios</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-900 p-4 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold">Diseño Web</h3>
+        <p>Diseño y desarrollo de sitios web responsivos y modernos.</p>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold">Contenido Digital</h3>
+        <p>Edición de videos, branding y recursos multimedia.</p>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-xl shadow-lg">
+        <h3 class="text-xl font-semibold">Consultoría Creativa</h3>
+        <p>Asesoría en proyectos de tecnología y entretenimiento digital.</p>
       </div>
     </div>
   </section>
 
-  <section id="servicios" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Servicios</h2>
-    <ul class="list-disc list-inside">
-      <li>Desarrollo de apps</li>
-      <li>Diseño para creadores</li>
-      <li>Colaboraciones de contenido</li>
+  <!-- Actualizaciones -->
+  <section id="actualizaciones" class="p-10">
+    <h2 class="text-3xl font-bold mb-4">Actualizaciones de Apps y Proyectos</h2>
+    <ul class="list-disc ml-6 text-gray-300">
+      <li><strong>App XYZ</strong>: Nueva función de login agregada - Marzo 2025</li>
+      <li><strong>Videojuego Prototipo</strong>: Beta disponible para testers - Abril 2025</li>
     </ul>
   </section>
 
-  <section id="blog" class="py-12 bg-white px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Blog / Actualizaciones</h2>
-    <p>Aquí irán las publicaciones sobre apps, ideas, y más.</p>
+  <!-- Comentarios -->
+  <section id="comentarios" class="p-10 bg-gray-800">
+    <h2 class="text-3xl font-bold mb-6">Comentarios</h2>
+    <form id="comentarioForm" class="space-y-4">
+      <input type="email" id="email" placeholder="Tu correo electrónico" class="w-full p-2 rounded bg-gray-700" required />
+      <textarea id="comentario" placeholder="Escribe tu comentario..." class="w-full p-2 rounded bg-gray-700" required></textarea>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Enviar</button>
+    </form>
+    <div id="comentariosLista" class="mt-6 space-y-2 text-gray-300"></div>
   </section>
 
-  <section id="testimonios" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Testimonios</h2>
-    <blockquote class="italic">"Damian hizo un excelente trabajo con mi app. ¡Totalmente recomendado!" - Cliente satisfecho</blockquote>
+  <!-- Blog -->
+  <section id="blog" class="p-10">
+    <h2 class="text-3xl font-bold mb-4">Blog Técnico</h2>
+    <p class="text-gray-400">Muy pronto podrás leer artículos y tutoriales sobre desarrollo, tecnología y creatividad.</p>
   </section>
 
-  <section id="galeria" class="py-12 bg-white px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Galería</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="bg-gray-200 h-40">Imagen o video</div>
+  <!-- Exclusivo -->
+  <section id="exclusivo" class="p-10 bg-gray-800">
+    <h2 class="text-3xl font-bold mb-4">Contenido Exclusivo</h2>
+    <p class="text-gray-400">Regístrate para acceder a videos, código fuente y tips premium.</p>
+  </section>
+
+  <!-- Acerca de mí -->
+  <section id="acerca" class="p-10">
+    <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
+    <p class="text-gray-400">Soy un creador digital con enfoque multidisciplinario. Desde desarrollo de apps hasta producción audiovisual, busco innovar en cada proyecto.</p>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="p-10 bg-gray-800">
+    <h2 class="text-3xl font-bold mb-6">Contáctame</h2>
+    <p>Email: <a href="mailto:damian@example.com" class="text-blue-400">damian@example.com</a></p>
+    <p>GitHub: <a href="https://github.com/damiancv" class="text-blue-400" target="_blank">@damiancv</a></p>
+  </section>
+
+  <!-- Footer con redes sociales y contador de subs -->
+  <footer class="bg-gray-900 p-4 text-center text-gray-500">
+    <p>Sígueme en redes sociales:</p>
+    <div class="flex justify-center gap-4 mt-2">
+      <a href="#" class="hover:text-white">YouTube</a>
+      <a href="#" class="hover:text-white">Instagram</a>
+      <a href="#" class="hover:text-white">TikTok</a>
     </div>
-  </section>
-
-  <section id="contacto" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-    <form class="space-y-4">
-      <input class="w-full border p-2 rounded" type="text" placeholder="Tu nombre" required />
-      <input class="w-full border p-2 rounded" type="email" placeholder="Tu correo" required />
-      <textarea class="w-full border p-2 rounded" placeholder="Tu mensaje" required></textarea>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enviar</button>
-    </form>
-  </section>
-
-  <section id="comentarios" class="py-12 bg-white px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Comentarios</h2>
-    <form class="space-y-4">
-      <input class="w-full border p-2 rounded" type="text" placeholder="Nombre" />
-      <textarea class="w-full border p-2 rounded" placeholder="Deja tu comentario"></textarea>
-      <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Publicar</button>
-    </form>
-  </section>
-
-  <footer class="bg-gray-800 text-white py-6 text-center">
-    <p>&copy; 2025 Damian CV. Todos los derechos reservados.</p>
+    <div class="mt-4">
+      <p>Suscriptores actuales: <span id="contador">...</span></p>
+    </div>
   </footer>
+
+  <script>
+    // Comentarios simulados (deberías conectar a una base de datos real como Firebase)
+    document.getElementById('comentarioForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const comentario = document.getElementById('comentario').value;
+      const contenedor = document.getElementById('comentariosLista');
+      const nuevo = document.createElement('div');
+      nuevo.textContent = `${email}: ${comentario}`;
+      contenedor.appendChild(nuevo);
+      this.reset();
+    });
+
+    // Contador de suscriptores de YouTube (demo, requiere backend por seguridad)
+    async function obtenerSubs() {
+      const apiKey = 'TU_API_KEY_YOUTUBE'; // Reemplazar con tu API key real en backend
+      const channelId = 'TU_CHANNEL_ID'; // Reemplazar con tu canal ID
+      try {
+        const res = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
+        const subs = res.data.items[0].statistics.subscriberCount;
+        document.getElementById('contador').textContent = subs;
+      } catch (err) {
+        console.error('Error al obtener subs:', err);
+      }
+    }
+    obtenerSubs();
+  </script>
 </body>
 </html>
-"""
-
-# Crear archivo HTML
-project_dir = Path("/mnt/data/portafolio")
-project_dir.mkdir(parents=True, exist_ok=True)
-html_path = project_dir / "index.html"
-html_path.write_text(html_content, encoding="utf-8")
-
-# Crear ZIP
-zip_path = Path("/mnt/data/portafolio.zip")
-with ZipFile(zip_path, 'w') as zipf:
-    zipf.write(html_path, arcname="index.html")
-
-zip_path
