@@ -21,17 +21,6 @@
             margin: 10px;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        .admin-section {
-            background-color: #1e1e1e;
-            padding: 15px;
-            margin-top: 20px;
-            border: 1px solid #333;
-        }
-
         footer {
             background-color: #1e1e1e;
             color: #ccc;
@@ -57,38 +46,16 @@
         <p>Portafolio, actualizaciones y colaboraciones</p>
     </header>
 
-    <!-- Registro por correo -->
-    <section id="register-section">
-        <h2>Contenido exclusivo</h2>
-        <p>Ingresa tu correo para ver contenido exclusivo:</p>
-        <input type="email" id="emailInput" placeholder="Tu correo">
-        <button onclick="registerEmail()">Acceder</button>
-    </section>
-
     <!-- Contenido exclusivo -->
-    <section id="exclusive-section" class="hidden">
-        <h3>Contenido exclusivo</h3>
-        <p>Aquí puedes ver información solo disponible para usuarios registrados.</p>
-    </section>
-
-    <!-- Modo admin -->
     <section>
-        <h2>Acceso administrador</h2>
-        <input type="password" id="adminPass" placeholder="Contraseña">
-        <button onclick="checkAdmin()">Entrar</button>
-    </section>
-
-    <!-- Publicación de actualizaciones -->
-    <section id="admin-panel" class="hidden admin-section">
-        <h3>Panel de actualizaciones</h3>
-        <textarea id="updateInput" placeholder="Escribe una nueva actualización" rows="4" cols="50"></textarea><br>
-        <button onclick="postUpdate()">Publicar</button>
+        <h3>Contenido exclusivo</h3>
+        <p>Aquí puedes ver información solo disponible para todos los usuarios.</p>
     </section>
 
     <!-- Mostrar actualizaciones -->
     <section>
         <h2>Actualizaciones</h2>
-        <ul id="updatesList"></ul>
+        <p>Próximamente se mostrarán actualizaciones relevantes.</p>
     </section>
 
     <footer>
@@ -100,63 +67,6 @@
         <a href="https://www.instagram.com/DAMIANCV" target="_blank">Instagram</a>
     </footer>
 
-    <script>
-        const PASSWORD = "damian2025";
-
-        // Registro
-        function registerEmail() {
-            const email = document.getElementById('emailInput').value;
-            if (email.includes('@')) {
-                localStorage.setItem('registered', 'true');
-                document.getElementById('register-section').classList.add('hidden');
-                document.getElementById('exclusive-section').classList.remove('hidden');
-            } else {
-                alert("Correo inválido");
-            }
-        }
-
-        // Mostrar si ya está registrado
-        if (localStorage.getItem('registered') === 'true') {
-            document.getElementById('register-section').classList.add('hidden');
-            document.getElementById('exclusive-section').classList.remove('hidden');
-        }
-
-        // Validar administrador
-        function checkAdmin() {
-            const input = document.getElementById('adminPass').value;
-            if (input === PASSWORD) {
-                document.getElementById('admin-panel').classList.remove('hidden');
-            } else {
-                alert("Contraseña incorrecta");
-            }
-        }
-
-        // Publicar actualización
-        function postUpdate() {
-            const text = document.getElementById('updateInput').value;
-            if (!text.trim()) return;
-            const updates = JSON.parse(localStorage.getItem('updates') || '[]');
-            updates.unshift(text);
-            localStorage.setItem('updates', JSON.stringify(updates));
-            renderUpdates();
-            document.getElementById('updateInput').value = '';
-        }
-
-        // Mostrar actualizaciones
-        function renderUpdates() {
-            const updates = JSON.parse(localStorage.getItem('updates') || '[]');
-            const list = document.getElementById('updatesList');
-            list.innerHTML = '';
-            updates.forEach(update => {
-                const li = document.createElement('li');
-                li.textContent = update;
-                list.appendChild(li);
-            });
-        }
-
-        renderUpdates();
-    </script>
 </body>
 
 </html>
-
