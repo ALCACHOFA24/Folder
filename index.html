@@ -11,13 +11,14 @@
   <!-- Navbar -->
   <nav class="bg-gray-900 p-4 flex justify-between items-center shadow-lg">
     <h1 class="text-2xl font-bold">Damian CV</h1>
-    <ul class="flex gap-4">
+    <ul class="flex gap-4 flex-wrap">
       <li><a href="#presentacion" class="hover:text-blue-400">Presentación</a></li>
       <li><a href="#servicios" class="hover:text-blue-400">Servicios</a></li>
       <li><a href="#actualizaciones" class="hover:text-blue-400">Actualizaciones</a></li>
       <li><a href="#comentarios" class="hover:text-blue-400">Comentarios</a></li>
       <li><a href="#blog" class="hover:text-blue-400">Blog</a></li>
       <li><a href="#exclusivo" class="hover:text-blue-400">Exclusivo</a></li>
+      <li><a href="#tienda" class="hover:text-blue-400">Tienda</a></li>
       <li><a href="#acerca" class="hover:text-blue-400">Acerca de mí</a></li>
       <li><a href="#contacto" class="hover:text-blue-400">Contacto</a></li>
     </ul>
@@ -80,10 +81,25 @@
     <p class="text-gray-400">Regístrate para acceder a videos, código fuente y tips premium.</p>
   </section>
 
+  <!-- Tienda Online -->
+  <section id="tienda" class="p-10">
+    <h2 class="text-3xl font-bold mb-4">Mi Tienda Online</h2>
+    <p class="text-gray-400">Compra productos oficiales en mi tienda:</p>
+    <a href="https://my-store-e86371.creator-spring.com/en" target="_blank" class="text-blue-400 underline">Ir a la tienda</a>
+  </section>
+
   <!-- Acerca de mí -->
   <section id="acerca" class="p-10">
     <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
     <p class="text-gray-400">Soy un creador digital con enfoque multidisciplinario. Desde desarrollo de apps hasta producción audiovisual, busco innovar en cada proyecto.</p>
+    <div class="mt-4">
+      <h3 class="text-xl font-semibold mb-2">Redes Sociales:</h3>
+      <ul class="space-y-2">
+        <li><a href="https://www.instagram.com/damian.cv/" class="text-blue-400 underline">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@damian.cv" class="text-blue-400 underline">TikTok</a></li>
+        <li><a href="https://twitter.com/DamianCV_" class="text-blue-400 underline">Twitter (X)</a></li>
+      </ul>
+    </div>
   </section>
 
   <!-- Contacto -->
@@ -97,9 +113,10 @@
   <footer class="bg-gray-900 p-4 text-center text-gray-500">
     <p>Sígueme en redes sociales:</p>
     <div class="flex justify-center gap-4 mt-2">
-      <a href="#" class="hover:text-white">YouTube</a>
-      <a href="#" class="hover:text-white">Instagram</a>
-      <a href="#" class="hover:text-white">TikTok</a>
+      <a href="https://www.youtube.com/@DamianCV" class="hover:text-white">YouTube</a>
+      <a href="https://www.instagram.com/damian.cv/" class="hover:text-white">Instagram</a>
+      <a href="https://www.tiktok.com/@damian.cv" class="hover:text-white">TikTok</a>
+      <a href="https://twitter.com/DamianCV_" class="hover:text-white">X (Twitter)</a>
     </div>
     <div class="mt-4">
       <p>Suscriptores actuales: <span id="contador">...</span></p>
@@ -107,7 +124,6 @@
   </footer>
 
   <script>
-    // Comentarios simulados (deberías conectar a una base de datos real como Firebase)
     document.getElementById('comentarioForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
@@ -119,10 +135,9 @@
       this.reset();
     });
 
-    // Contador de suscriptores de YouTube (demo, requiere backend por seguridad)
     async function obtenerSubs() {
-      const apiKey = 'TU_API_KEY_YOUTUBE'; // Reemplazar con tu API key real en backend
-      const channelId = 'TU_CHANNEL_ID'; // Reemplazar con tu canal ID
+      const apiKey = 'TU_API_KEY_YOUTUBE';
+      const channelId = 'TU_CHANNEL_ID';
       try {
         const res = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
         const subs = res.data.items[0].statistics.subscriberCount;
