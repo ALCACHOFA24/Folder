@@ -1,187 +1,63 @@
+// La estructura se dividirá en archivos o secciones individuales por pestaña.
+// Aquí se presenta cómo podría organizarse el contenido de forma ordenada:
+
+// 1. index.html (Principal con menú de navegación)
+// 2. presentacion.html
+// 3. servicios.html
+// 4. actualizaciones.html
+// 5. comentarios.html
+// 6. blog.html
+// 7. exclusivo.html
+// 8. tienda.html
+// 9. acerca.html
+// 10. contacto.html
+
+// Cada uno de estos archivos incluirá su sección específica y compartirá un header/footer común.
+
+// A continuación, se muestra cómo quedaría el archivo principal index.html:
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Damian CV | Portafolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
-    body {
-      background: linear-gradient(to bottom right, #011627, #001b2e);
-      color: #f0f4f8;
-    }
-    nav, footer {
-      background-color: #012A4A;
-    }
-    section {
-      border-bottom: 1px solid #014f86;
-    }
-    a {
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: #00B4D8;
-    }
-    .card {
-      background-color: #01497C;
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    input, textarea {
-      background-color: #012A4A;
-      border: 1px solid #014f86;
-      color: #f0f4f8;
-    }
-    input::placeholder, textarea::placeholder {
-      color: #90a4ae;
-    }
-    button {
-      background-color: #00B4D8;
-      color: #012A4A;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #0077b6;
-    }
+    body { background: linear-gradient(to bottom right, #011627, #001b2e); color: #f0f4f8; }
+    nav, footer { background-color: #012A4A; }
+    a:hover { color: #00B4D8; }
   </style>
 </head>
-<body class="font-sans">
-  <!-- Navbar -->
-  <nav class="p-4 flex justify-between items-center shadow-lg">
+<body>
+  <nav class="p-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-white">Damian CV</h1>
     <ul class="flex gap-4 flex-wrap text-blue-200">
-      <li><a href="#presentacion">Presentación</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#actualizaciones">Actualizaciones</a></li>
-      <li><a href="#comentarios">Comentarios</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#exclusivo">Exclusivo</a></li>
-      <li><a href="#tienda">Tienda</a></li>
-      <li><a href="#acerca">Acerca de mí</a></li>
-      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="presentacion.html">Presentación</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="actualizaciones.html">Actualizaciones</a></li>
+      <li><a href="comentarios.html">Comentarios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="exclusivo.html">Exclusivo</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="acerca.html">Acerca de mí</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
     </ul>
   </nav>
-
-  <!-- Presentación -->
-  <section id="presentacion" class="p-10 text-center">
-    <h2 class="text-4xl font-semibold mb-4">¡Bienvenido a mi mundo digital!</h2>
-    <p class="text-blue-100">Soy Damian CV, creador de contenido, desarrollador y apasionado de la tecnología.</p>
-  </section>
-
-  <!-- Servicios -->
-  <section id="servicios" class="p-10">
-    <h2 class="text-3xl font-bold mb-6">Portafolio de Servicios</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="card">
-        <h3 class="text-xl font-semibold">Diseño Web</h3>
-        <p>Diseño y desarrollo de sitios web responsivos y modernos.</p>
-      </div>
-      <div class="card">
-        <h3 class="text-xl font-semibold">Contenido Digital</h3>
-        <p>Edición de videos, branding y recursos multimedia.</p>
-      </div>
-      <div class="card">
-        <h3 class="text-xl font-semibold">Consultoría Creativa</h3>
-        <p>Asesoría en proyectos de tecnología y entretenimiento digital.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Actualizaciones -->
-  <section id="actualizaciones" class="p-10">
-    <h2 class="text-3xl font-bold mb-4">Actualizaciones de Apps y Proyectos</h2>
-    <ul class="list-disc ml-6 text-blue-100">
-      <li><strong>App XYZ</strong>: Nueva función de login agregada - Marzo 2025</li>
-      <li><strong>Videojuego Prototipo</strong>: Beta disponible para testers - Abril 2025</li>
-    </ul>
-  </section>
-
-  <!-- Comentarios -->
-  <section id="comentarios" class="p-10">
-    <h2 class="text-3xl font-bold mb-6">Comentarios</h2>
-    <form id="comentarioForm" class="space-y-4">
-      <input type="email" id="email" placeholder="Tu correo electrónico" class="w-full p-2 rounded" required />
-      <textarea id="comentario" placeholder="Escribe tu comentario..." class="w-full p-2 rounded" required></textarea>
-      <button type="submit" class="px-4 py-2 rounded">Enviar</button>
-    </form>
-    <div id="comentariosLista" class="mt-6 space-y-2 text-blue-100"></div>
-  </section>
-
-  <!-- Blog -->
-  <section id="blog" class="p-10">
-    <h2 class="text-3xl font-bold mb-4">Blog Técnico</h2>
-    <p class="text-blue-100">Muy pronto podrás leer artículos y tutoriales sobre desarrollo, tecnología y creatividad.</p>
-  </section>
-
-  <!-- Exclusivo -->
-  <section id="exclusivo" class="p-10">
-    <h2 class="text-3xl font-bold mb-4">Contenido Exclusivo</h2>
-    <p class="text-blue-100">Regístrate para acceder a videos, código fuente y tips premium.</p>
-  </section>
-
-  <!-- Tienda Online -->
-  <section id="tienda" class="p-10">
-    <h2 class="text-3xl font-bold mb-4">Mi Tienda Online</h2>
-    <a href="https://my-store-e86371.creator-spring.com/en" target="_blank" class="text-cyan-300 underline">Ir a la tienda oficial</a>
-  </section>
-
-  <!-- Acerca de mí -->
-  <section id="acerca" class="p-10">
-    <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
-    <p class="text-blue-100">Soy un creador digital con enfoque multidisciplinario. Desde desarrollo de apps hasta producción audiovisual, busco innovar en cada proyecto.</p>
-    <h3 class="text-xl font-semibold mt-4 mb-2">Redes Sociales:</h3>
-    <ul class="space-y-2 text-cyan-300">
-      <li><a href="https://www.instagram.com/damian.cv/">Instagram</a></li>
-      <li><a href="https://www.tiktok.com/@damian.cv">TikTok</a></li>
-      <li><a href="https://twitter.com/DamianCV_">Twitter (X)</a></li>
-    </ul>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto" class="p-10">
-    <h2 class="text-3xl font-bold mb-6">Contáctame</h2>
-    <p>Email: <a href="mailto:damian@example.com" class="text-cyan-300">damian@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/damiancv" class="text-cyan-300" target="_blank">@damiancv</a></p>
-  </section>
-
-  <!-- Footer -->
+  <main class="p-10 text-center">
+    <h2 class="text-3xl font-semibold">Bienvenido</h2>
+    <p>Explora cada sección usando el menú superior.</p>
+  </main>
   <footer class="p-4 text-center text-blue-300">
     <p>Sígueme en redes sociales:</p>
     <div class="flex justify-center gap-4 mt-2">
       <a href="https://www.youtube.com/@DamianCV">YouTube</a>
       <a href="https://www.instagram.com/damian.cv/">Instagram</a>
       <a href="https://www.tiktok.com/@damian.cv">TikTok</a>
-      <a href="https://twitter.com/DamianCV_">Twitter (X)</a>
+      <a href="https://twitter.com/DamianCV_">Twitter</a>
     </div>
-    <p class="mt-4">Suscriptores actuales: <span id="contador">...</span></p>
   </footer>
-
-  <script>
-    document.getElementById('comentarioForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const comentario = document.getElementById('comentario').value;
-      const contenedor = document.getElementById('comentariosLista');
-      const nuevo = document.createElement('div');
-      nuevo.textContent = `${email}: ${comentario}`;
-      contenedor.appendChild(nuevo);
-      this.reset();
-    });
-
-    async function obtenerSubs() {
-      const apiKey = 'TU_API_KEY_YOUTUBE';
-      const channelId = 'TU_CHANNEL_ID';
-      try {
-        const res = await axios.get(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
-        const subs = res.data.items[0].statistics.subscriberCount;
-        document.getElementById('contador').textContent = subs;
-      } catch (err) {
-        console.error('Error al obtener subs:', err);
-      }
-    }
-    obtenerSubs();
-  </script>
 </body>
 </html>
+
+// Cada uno de los otros archivos (como presentacion.html, servicios.html, etc.) usará el mismo navbar y footer, pero con su contenido específico.
