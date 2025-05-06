@@ -1,90 +1,162 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Damian CV | Portafolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damian CV - Portafolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: white;
+        }
+
+        header,
+        section,
+        footer {
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .admin-section {
+            background-color: #1e1e1e;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: #ccc;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Damian CV</h1>
-      <nav class="space-x-4">
-        <a href="#sobre-mi" class="hover:text-blue-500">Sobre mí</a>
-        <a href="#proyectos" class="hover:text-blue-500">Proyectos</a>
-        <a href="#servicios" class="hover:text-blue-500">Servicios</a>
-        <a href="#blog" class="hover:text-blue-500">Blog</a>
-        <a href="#testimonios" class="hover:text-blue-500">Testimonios</a>
-        <a href="#galeria" class="hover:text-blue-500">Galería</a>
-        <a href="#contacto" class="hover:text-blue-500">Contacto</a>
-      </nav>
-    </div>
-  </header>
 
-  <section id="sobre-mi" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
-    <p>Soy Damian CV, creador de contenido y desarrollador. Este sitio es mi espacio para mostrar mis proyectos, compartir actualizaciones, y conectar con quienes buscan colaboraciones o servicios digitales.</p>
-  </section>
+<body>
+    <header>
+        <h1>Damian CV</h1>
+        <p>Portafolio, actualizaciones y colaboraciones</p>
+    </header>
 
-  <section id="proyectos" class="py-12 bg-white px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Proyectos Destacados</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="p-4 bg-gray-50 rounded shadow">
-        <h3 class="text-xl font-semibold">Nombre del Proyecto</h3>
-        <p>Descripción breve del proyecto y tecnologías usadas.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Registro por correo -->
+    <section id="register-section">
+        <h2>Contenido exclusivo</h2>
+        <p>Ingresa tu correo para ver contenido exclusivo:</p>
+        <input type="email" id="emailInput" placeholder="Tu correo">
+        <button onclick="registerEmail()">Acceder</button>
+    </section>
 
-  <section id="servicios" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Servicios</h2>
-    <ul class="list-disc list-inside">
-      <li>Desarrollo de apps</li>
-      <li>Diseño para creadores</li>
-      <li>Colaboraciones de contenido</li>
-    </ul>
-  </section>
+    <!-- Contenido exclusivo -->
+    <section id="exclusive-section" class="hidden">
+        <h3>Contenido exclusivo</h3>
+        <p>Aquí puedes ver información solo disponible para usuarios registrados.</p>
+    </section>
 
-  <section id="blog" class="py-12 bg-white px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Blog / Actualizaciones</h2>
-    <p>Aquí irán las publicaciones sobre apps, ideas, y más.</p>
-  </section>
+    <!-- Modo admin -->
+    <section>
+        <h2>Acceso administrador</h2>
+        <input type="password" id="adminPass" placeholder="Contraseña">
+        <button onclick="checkAdmin()">Entrar</button>
+    </section>
 
-  <section id="testimonios" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Testimonios</h2>
-    <blockquote class="italic">"Damian hizo un excelente trabajo con mi app. ¡Totalmente recomendado!" - Cliente satisfecho</blockquote>
-  </section>
+    <!-- Publicación de actualizaciones -->
+    <section id="admin-panel" class="hidden admin-section">
+        <h3>Panel de actualizaciones</h3>
+        <textarea id="updateInput" placeholder="Escribe una nueva actualización" rows="4" cols="50"></textarea><br>
+        <button onclick="postUpdate()">Publicar</button>
+    </section>
 
-  <section id="galeria" class="py-12 bg-white px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Galería</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="bg-gray-200 h-40">Imagen o video</div>
-    </div>
-  </section>
+    <!-- Mostrar actualizaciones -->
+    <section>
+        <h2>Actualizaciones</h2>
+        <ul id="updatesList"></ul>
+    </section>
 
-  <section id="contacto" class="py-12 px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Contacto</h2>
-    <form class="space-y-4">
-      <input class="w-full border p-2 rounded" type="text" placeholder="Tu nombre" required />
-      <input class="w-full border p-2 rounded" type="email" placeholder="Tu correo" required />
-      <textarea class="w-full border p-2 rounded" placeholder="Tu mensaje" required></textarea>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Enviar</button>
-    </form>
-  </section>
+    <footer>
+        <p>© Damian CV 2025</p>
+        <p>Contacto: <a href="mailto:damian@correo.com">damian@correo.com</a></p>
+        <p>Sígueme en mis redes sociales:</p>
+        <a href="https://www.youtube.com/c/DAMIANCV" target="_blank">YouTube</a>
+        <a href="https://twitter.com/DAMIANCV" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/DAMIANCV" target="_blank">Instagram</a>
+    </footer>
 
-  <section id="comentarios" class="py-12 bg-white px-4 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-4">Comentarios</h2>
-    <form class="space-y-4">
-      <input class="w-full border p-2 rounded" type="text" placeholder="Nombre" />
-      <textarea class="w-full border p-2 rounded" placeholder="Deja tu comentario"></textarea>
-      <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Publicar</button>
-    </form>
-  </section>
+    <script>
+        const PASSWORD = "damian2025";
 
-  <footer class="bg-gray-800 text-white py-6 text-center">
-    <p>&copy; 2025 Damian CV. Todos los derechos reservados.</p>
-  </footer>
+        // Registro
+        function registerEmail() {
+            const email = document.getElementById('emailInput').value;
+            if (email.includes('@')) {
+                localStorage.setItem('registered', 'true');
+                document.getElementById('register-section').classList.add('hidden');
+                document.getElementById('exclusive-section').classList.remove('hidden');
+            } else {
+                alert("Correo inválido");
+            }
+        }
+
+        // Mostrar si ya está registrado
+        if (localStorage.getItem('registered') === 'true') {
+            document.getElementById('register-section').classList.add('hidden');
+            document.getElementById('exclusive-section').classList.remove('hidden');
+        }
+
+        // Validar administrador
+        function checkAdmin() {
+            const input = document.getElementById('adminPass').value;
+            if (input === PASSWORD) {
+                document.getElementById('admin-panel').classList.remove('hidden');
+            } else {
+                alert("Contraseña incorrecta");
+            }
+        }
+
+        // Publicar actualización
+        function postUpdate() {
+            const text = document.getElementById('updateInput').value;
+            if (!text.trim()) return;
+            const updates = JSON.parse(localStorage.getItem('updates') || '[]');
+            updates.unshift(text);
+            localStorage.setItem('updates', JSON.stringify(updates));
+            renderUpdates();
+            document.getElementById('updateInput').value = '';
+        }
+
+        // Mostrar actualizaciones
+        function renderUpdates() {
+            const updates = JSON.parse(localStorage.getItem('updates') || '[]');
+            const list = document.getElementById('updatesList');
+            list.innerHTML = '';
+            updates.forEach(update => {
+                const li = document.createElement('li');
+                li.textContent = update;
+                list.appendChild(li);
+            });
+        }
+
+        renderUpdates();
+    </script>
 </body>
+
 </html>
+
